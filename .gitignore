@@ -1,0 +1,25 @@
+backend/.env
+backend/node_modules
+frontend/to-do-list/.env
+frontend/to-do-list/node_modules
+
+# dependencies
+frontend/to-do-list/.pnp
+frontend/to-do-list/.pnp.js
+
+# testing
+frontend/to-do-list/coverage
+
+# production
+frontend/to-do-list/build
+
+# misc
+frontend/to-do-list/.DS_Store
+frontend/to-do-list/.env.local
+frontend/to-do-list/.env.development.local
+frontend/to-do-list/.env.test.local
+frontend/to-do-list/.env.production.local
+
+frontend/to-do-list/npm-debug.log*
+frontend/to-do-list/yarn-debug.log*
+frontend/to-do-list/yarn-error.log*
