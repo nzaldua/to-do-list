@@ -3,6 +3,7 @@ backend/node_modules
 frontend/to-do-list/.env
 frontend/to-do-list/node_modules
 
+### taken from auto-generated .gitignore by React
 # dependencies
 frontend/to-do-list/.pnp
 frontend/to-do-list/.pnp.js
