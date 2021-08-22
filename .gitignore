@@ -1,5 +1,6 @@
 backend/.env
 backend/node_modules
+backend/ts-build
 frontend/to-do-list/.env
 frontend/to-do-list/node_modules
 
