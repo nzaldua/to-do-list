@@ -5,7 +5,12 @@ import { Helper } from '../helper';
 const router = Router();
 // List to-dos
 router.route('/').get(async (req, res) => {
-  const [response, error] = await Helper(ActivityModel.find());
+  const { page = 1, limit = 10 } = req.query;
+  const [response, error] = await Helper(
+    ActivityModel.find()
+      .skip((+page - 1) * +limit)
+      .limit(+limit)
+  );
 
   res.status(response ? 200 : 400).json({
     body: response ?? error,
@@ -14,13 +19,7 @@ router.route('/').get(async (req, res) => {
 
 // Create to-do
 router.route('/add').post(async (req, res) => {
-  const { activity } = req.body;
-
-  const newActivity = new ActivityModel({
-    activity,
-  });
-
-  const [response, error] = await Helper(newActivity.save());
+  const [response, error] = await Helper(new ActivityModel(req.body).save());
 
   res.status(response ? 200 : 400).json({
     body: response ?? error,
