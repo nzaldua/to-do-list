@@ -1,15 +1,18 @@
-import { Schema, model } from 'mongoose';
+import { Schema, Model, model } from 'mongoose';
+import {} from 'mongodb';
 
 interface Activity {
   activity: string;
+  date: Date;
 }
 
-const schema = new Schema<Activity>(
+const schema = new Schema<Activity, Model<Activity>, Activity>(
   {
     activity: {
       type: String,
       required: true,
     },
+    date: { type: Date },
   },
   {
     timestamps: true,
