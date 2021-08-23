@@ -4,13 +4,17 @@ require('dotenv').config();
 
 // Initialize mongodb connection
 const uri = process.env.MONGODB_URI || '';
-mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false,
-  })
-  .catch((e) => console.error(e));
+(async () => {
+  try {
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false,
+    });
+  } catch (e) {
+    console.error(e);
+  }
+})();
 const connection = mongoose.connection;
 connection.once('open', () => {
   console.log(`MongoDB connected`);
@@ -21,9 +25,9 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.use(express.json());
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
-});
+// Add router
+import { router as todoRoute } from './route/todo';
+app.use('/api', todoRoute);
 
 app.get('*', (req, res) => {
   res.status(404).json({
@@ -31,6 +35,6 @@ app.get('*', (req, res) => {
   });
 });
 
-// Add router
-import { router as todoRoute } from './route/todo';
-app.use('/api', todoRoute);
+app.listen(port, () => {
+  console.log(`Server is running on port: ${port}`);
+});
