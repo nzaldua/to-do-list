@@ -9,7 +9,7 @@ const DeleteToDo: React.FunctionComponent<any> = props => {
     e.preventDefault();
 
     axios.delete(`http://localhost:5000/api/${id}/delete`)
-      .then((res: any) => {
+      .then((res) => {
         console.log(`Successfully deleted to-do`)
       })
       .catch((e) => {

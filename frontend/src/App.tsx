@@ -10,7 +10,8 @@ const App: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
       <div className="container">
-        <div className="center">
+        <div className="center"><h1>To-do List</h1></div>
+        <div className="NavBar left">
           <NavBar />
         </div>
         <div className="center">

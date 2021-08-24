@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import IItem from "../models/item";
 
 const ToDo: React.FunctionComponent<any> = props => {
   return (
@@ -20,15 +21,15 @@ const ToDo: React.FunctionComponent<any> = props => {
 }
 
 const ListToDo: React.FunctionComponent<any> = props => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState<IItem[]>();
   useEffect(() => {
     axios.get('http://localhost:5000/api/?limit=30')
-      .then((res: any) => {
-        let activities: any = [];
-        for (const todo of res.data.body) {
+      .then((res) => {
+        let activities: IItem[] = [];
+        for (const todo of res.data.body as IItem[]) {
           activities = [...activities, todo];
         }
-        setList(activities as any);
+        setList(activities);
       })
       .catch((e) => {
         console.error(e);
@@ -37,7 +38,7 @@ const ListToDo: React.FunctionComponent<any> = props => {
 
   return (
     <div className="List">
-      {list.map((item, index) => <ToDo key={index} activity={(item as any)["activity"]} id={(item as any)["_id"]}/>)}
+      {list && list.map((item, index) => <ToDo key={index} activity={item["activity"]} id={item["_id"]}/>)}
     </div>
   )
 }

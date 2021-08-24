@@ -15,7 +15,7 @@ const EditToDo: React.FunctionComponent<any> = props => {
     e.preventDefault();
 
     axios.put(`http://localhost:5000/api/${id}/update`, { activity: title })
-      .then((res: any) => {
+      .then((res) => {
         console.log(`Successfully updated to-do`)
       })
       .catch((e) => {
@@ -30,7 +30,7 @@ const EditToDo: React.FunctionComponent<any> = props => {
   return (
     <div>
       <form onSubmit={(e) => {submit(e)}}>
-        <input type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} required></input>
+        <input autoFocus type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} required></input>
         <input type="submit" value="Edit to-do"/>
       </form>
     </div>

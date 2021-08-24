@@ -8,7 +8,7 @@ const CreateToDo: React.FunctionComponent<any> = props => {
     e.preventDefault();
 
     axios.post(`http://localhost:5000/api/add`, { activity: title })
-      .then((res: any) => {
+      .then((res) => {
         console.log(`Successfully added to-do`)
       })
       .catch((e) => {
@@ -23,7 +23,7 @@ const CreateToDo: React.FunctionComponent<any> = props => {
   return (
     <div>
       <form onSubmit={(e) => {submit(e)}}>
-        <input type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} required></input>
+        <input autoFocus type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} required></input>
         <input type="submit" value="Create to-do"/>
       </form>
     </div>
