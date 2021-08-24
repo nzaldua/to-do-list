@@ -30,7 +30,7 @@ const EditToDo: React.FunctionComponent<any> = props => {
   return (
     <div>
       <form onSubmit={(e) => {submit(e)}}>
-        <input autoFocus type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} required></input>
+        <input autoFocus type="text" value={title} onChange={(e) => {setTitle(e.target.value)}} onFocus={(e) => {e.target.select()}} required></input>
         <input type="submit" value="Edit to-do"/>
       </form>
     </div>
